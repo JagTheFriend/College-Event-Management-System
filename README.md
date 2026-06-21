@@ -4,15 +4,15 @@ A full-stack web application for managing and registering for college events. Bu
 
 ## Features
 
-- **User Authentication** — JWT-based signup/login with bcrypt password hashing
-- **Event Management** — Create, edit, and delete events (organizer-only)
-- **Event Registration** — Students can register for and cancel event registrations
-- **Attendance Tracking** — Mark and track event attendance
-- **QR Code Generation** — Auto-generate QR codes for events
-- **Category Filters & Search** — Browse events by category or search by title
-- **User Dashboard** — View registrations, attendance history, and created events
-- **Loading States** — Skeleton loaders and spinners throughout
-- **Error Handling** — Form validation, API error responses, and user-friendly error messages
+- **User Authentication**: JWT-based signup/login with bcrypt password hashing
+- **Event Management**: Create, edit, and delete events (organizer-only)
+- **Event Registration**: Students can register for and cancel event registrations
+- **Attendance Tracking**: Mark and track event attendance
+- **QR Code Generation**: Auto-generate QR codes for events
+- **Category Filters & Search**: Browse events by category or search by title
+- **User Dashboard**: View registrations, attendance history, and created events
+- **Loading States**: Skeleton loaders and spinners throughout
+- **Error Handling**: Form validation, API error responses, and user-friendly error messages
 
 ## Tech Stack
 
