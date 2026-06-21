@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String         @unique
+  password     String
+  role         String         @default("STUDENT")
+  createdAt    DateTime       @default(now())
+  events       Event[]
+  registrations Registration[]
+}
+
+model Event {
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  date         String
+  time         String
+  location     String
+  category     String         @default("Other")
+  capacity     Int
+  image        String         @default("")
+  organizerId  String         @db.ObjectId
+  organizer    User           @relation(fields: [organizerId], references: [id])
+  createdAt    DateTime       @default(now())
+  registrations Registration[]
+}
+
+model Registration {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String       @db.ObjectId
+  eventId        String       @db.ObjectId
+  status         String       @default("REGISTERED")
+  user           User         @relation(fields: [userId], references: [id])
+  event          Event        @relation(fields: [eventId], references: [id])
+  attendance     Attendance[]
+  createdAt      DateTime     @default(now())
+
+  @@unique([userId, eventId])
+}
+
+model Attendance {
+  id             String       @id @default(auto()) @map("_id") @db.ObjectId
+  registrationId String       @db.ObjectId
+  registration   Registration @relation(fields: [registrationId], references: [id])
+  markedAt       DateTime     @default(now())
+
+  @@unique([registrationId])
+}
