@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import EventCard from "@/components/EventCard";
 import { EventListSkeleton } from "@/components/Skeleton";
 
@@ -29,7 +28,7 @@ interface Event {
   organizer: { name: string };
 }
 
-export default function HomePage() {
+export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("All");
@@ -50,14 +49,9 @@ export default function HomePage() {
 
   return (
     <div>
-      <div className="text-center mb-10">
-        <h1 className="text-4xl font-bold mb-3" style={{ color: "#0F172A" }}>
-          College Events
-        </h1>
-        <p className="text-lg" style={{ color: "#64748B" }}>
-          Discover and register for exciting events happening on campus
-        </p>
-      </div>
+      <h1 className="text-3xl font-bold mb-6" style={{ color: "#0F172A" }}>
+        All Events
+      </h1>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <input
@@ -79,8 +73,7 @@ export default function HomePage() {
                     ? "linear-gradient(135deg, #4F46E5, #7C3AED)"
                     : "#FFFFFF",
                 color: category === cat ? "#FFFFFF" : "#64748B",
-                border:
-                  category === cat ? "none" : "1px solid #E2E8F0",
+                border: category === cat ? "none" : "1px solid #E2E8F0",
               }}
             >
               {cat}
@@ -96,9 +89,6 @@ export default function HomePage() {
           <p className="text-lg" style={{ color: "#94A3B8" }}>
             No events found
           </p>
-          <Link href="/events/create" className="gradient-btn inline-block mt-4">
-            Create the first event
-          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
